@@ -1,0 +1,21 @@
+---
+# teardown-workspace.yml
+#
+# Tear down a previously provisioned AI workspace.
+#
+# Expected extra-vars:
+#   - username  (string)  e.g. "jbatchel"
+#
+- name: Teardown AI Workspace
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  pre_tasks:
+  - name: Ensure username is provided
+    ansible.builtin.fail:
+      msg: "The variable 'username' must be provided via survey or extra-vars."
+    when: username is not defined
+
+  roles:
+  - role: rhoai.ai_workspace.teardown
