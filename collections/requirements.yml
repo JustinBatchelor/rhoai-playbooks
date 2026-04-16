@@ -1,5 +1,4 @@
 collections:
   - name: kubernetes.core
-    version: "2.4.0"
   - name: git+https://github.com/JustinBatchelor/rhoai-collection.git
     version: main
