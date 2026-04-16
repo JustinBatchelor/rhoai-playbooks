@@ -4,9 +4,10 @@
 # Provision a self-service AI coding workspace.
 #
 # Expected extra-vars (supplied via AAP Job Template survey):
-#   - username   (string)  e.g. "jbatchel"
-#   - git_repo   (string)  e.g. "https://github.com/org/repo.git"
-#   - ai_model   (string)  e.g. "qwen25-coder-14b"
+#   - username     (string)  e.g. "jbatchel"
+#   - git_repo     (string)  e.g. "https://github.com/org/repo.git"
+#   - ai_model     (string)  e.g. "qwen25-coder-14b"
+#   - editor_type  (string)  "workbench" or "devspace"
 #
 - name: Provision AI Workspace
   hosts: localhost
@@ -19,6 +20,7 @@
       msg: >-
         The variables 'username', 'git_repo', and 'ai_model' must be
         provided via survey or extra-vars.
+        Optional: 'editor_type' (defaults to 'workbench', also accepts 'devspace').
     when: username is not defined or git_repo is not defined or ai_model is not defined
 
   roles:
