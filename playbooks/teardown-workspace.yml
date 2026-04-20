@@ -4,7 +4,10 @@
 # Tear down a previously provisioned AI workspace.
 #
 # Expected extra-vars:
-#   - username  (string)  e.g. "jbatchel"
+#   - username        (string)  e.g. "jbatchel"
+#
+# Optional extra-vars:
+#   - argocd_project  (string)  defaults to "team-{{ username }}"
 #
 - name: Teardown AI Workspace
   hosts: localhost
@@ -12,7 +15,7 @@
   gather_facts: false
 
   pre_tasks:
-  - name: Ensure username is provided
+  - name: Ensure required variables are provided
     ansible.builtin.fail:
       msg: "The variable 'username' must be provided via survey or extra-vars."
     when: username is not defined
